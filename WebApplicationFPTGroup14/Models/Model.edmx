@@ -1,0 +1,1105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GROUP14Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="Role" Type="bit" />
+          <Property Name="AccountStatusID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountStatus">
+          <Key>
+            <PropertyRef Name="AccountStatusID" />
+          </Key>
+          <Property Name="AccountStatusID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HouseForRent">
+          <Key>
+            <PropertyRef Name="HouseID" />
+          </Key>
+          <Property Name="HouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Acreage" Type="int" />
+          <Property Name="Price" Type="bigint" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="TownshipID" Type="int" />
+          <Property Name="InnerBathRoom" Type="bit" />
+          <Property Name="Parking" Type="bit" />
+          <Property Name="MaxPeople" Type="int" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="255" />
+          <Property Name="AccountID" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsHouse" Type="bit" />
+          <Property Name="Kitchenshelf" Type="bit" />
+          <Property Name="Mezzanine" Type="bit" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="nchar" MaxLength="100" />
+          <Property Name="HouseID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="40" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" />
+          <Property Name="Mail" Type="nchar" MaxLength="30" />
+          <Property Name="AccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="TownshipID" Type="int" />
+        </EntityType>
+        <EntityType Name="Messenger">
+          <Key>
+            <PropertyRef Name="Receiver" />
+            <PropertyRef Name="SentTime" />
+          </Key>
+          <Property Name="Receiver" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SentTime" Type="datetime" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsRead" Type="bit" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostView" Type="int" />
+          <Property Name="PostDay" Type="datetime" />
+          <Property Name="HouseID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Renter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RenterID" Type="varchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Phone" Type="varchar" MaxLength="11" />
+          <Property Name="Note" Type="nvarchar" MaxLength="255" />
+          <Property Name="HouseID" Type="int" />
+          <Property Name="RentDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Township">
+          <Key>
+            <PropertyRef Name="TownshipID" />
+          </Key>
+          <Property Name="TownshipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TownshipName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="LocationX" Type="float" />
+          <Property Name="LocationY" Type="float" />
+        </EntityType>
+        <EntityType Name="University">
+          <Key>
+            <PropertyRef Name="UniversityID" />
+          </Key>
+          <Property Name="UniversityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnisersityName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="TownshipID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Group14.dbo.SearchResult' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SearchResult">
+          <Key>
+            <PropertyRef Name="PostID" />
+            <PropertyRef Name="HouseID" />
+            <PropertyRef Name="StatusID" />
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="PostTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostView" Type="int" />
+          <Property Name="PostDay" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Acreage" Type="int" />
+          <Property Name="Price" Type="bigint" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="TownshipID" Type="int" />
+          <Property Name="InnerBathRoom" Type="bit" />
+          <Property Name="Parking" Type="bit" />
+          <Property Name="MaxPeople" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsHouse" Type="bit" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kitchenshelf" Type="bit" />
+          <Property Name="Mezzanine" Type="bit" />
+          <Property Name="HouseID" Type="int" Nullable="false" />
+          <Property Name="Mail" Type="nchar" MaxLength="30" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Account_AccountStatus">
+          <End Role="AccountStatus" Type="Self.AccountStatus" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountStatus">
+              <PropertyRef Name="AccountStatusID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AccountStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseForRent_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="HouseForRent">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseForRent_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="HouseForRent">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseForRent_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="HouseForRent">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseForRent_Township">
+          <End Role="Township" Type="Self.Township" Multiplicity="0..1" />
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Township">
+              <PropertyRef Name="TownshipID" />
+            </Principal>
+            <Dependent Role="HouseForRent">
+              <PropertyRef Name="TownshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_HouseForRent">
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseForRent">
+              <PropertyRef Name="HouseID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="HouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_Township">
+          <End Role="Township" Type="Self.Township" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Township">
+              <PropertyRef Name="TownshipID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="TownshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messenger_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Messenger" Type="Self.Messenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Messenger">
+              <PropertyRef Name="Receiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_HouseForRent">
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseForRent">
+              <PropertyRef Name="HouseID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="HouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Renter_HouseForRent">
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="0..1" />
+          <End Role="Renter" Type="Self.Renter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseForRent">
+              <PropertyRef Name="HouseID" />
+            </Principal>
+            <Dependent Role="Renter">
+              <PropertyRef Name="HouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Township_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Township" Type="Self.Township" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Township">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_University_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="University" Type="Self.University" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="University">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_University_Township">
+          <End Role="Township" Type="Self.Township" Multiplicity="0..1" />
+          <End Role="University" Type="Self.University" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Township">
+              <PropertyRef Name="TownshipID" />
+            </Principal>
+            <Dependent Role="University">
+              <PropertyRef Name="TownshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GROUP14ModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountStatus" EntityType="Self.AccountStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HouseForRent" EntityType="Self.HouseForRent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info" EntityType="Self.Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messenger" EntityType="Self.Messenger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Renter" EntityType="Self.Renter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Township" EntityType="Self.Township" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="University" EntityType="Self.University" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchResult" EntityType="Self.SearchResult" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SearchResult].[PostID] AS [PostID], 
+    [SearchResult].[PostTitle] AS [PostTitle], 
+    [SearchResult].[PostView] AS [PostView], 
+    [SearchResult].[PostDay] AS [PostDay], 
+    [SearchResult].[Description] AS [Description], 
+    [SearchResult].[Acreage] AS [Acreage], 
+    [SearchResult].[Price] AS [Price], 
+    [SearchResult].[CityID] AS [CityID], 
+    [SearchResult].[TownshipID] AS [TownshipID], 
+    [SearchResult].[InnerBathRoom] AS [InnerBathRoom], 
+    [SearchResult].[Parking] AS [Parking], 
+    [SearchResult].[MaxPeople] AS [MaxPeople], 
+    [SearchResult].[Note] AS [Note], 
+    [SearchResult].[Address] AS [Address], 
+    [SearchResult].[IsHouse] AS [IsHouse], 
+    [SearchResult].[Name] AS [Name], 
+    [SearchResult].[CityName] AS [CityName], 
+    [SearchResult].[Kitchenshelf] AS [Kitchenshelf], 
+    [SearchResult].[Mezzanine] AS [Mezzanine], 
+    [SearchResult].[HouseID] AS [HouseID], 
+    [SearchResult].[Mail] AS [Mail], 
+    [SearchResult].[Phone] AS [Phone], 
+    [SearchResult].[Birthday] AS [Birthday], 
+    [SearchResult].[Sex] AS [Sex], 
+    [SearchResult].[Status] AS [Status], 
+    [SearchResult].[StatusID] AS [StatusID], 
+    [SearchResult].[AccountID] AS [AccountID]
+    FROM [dbo].[SearchResult] AS [SearchResult]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Account_AccountStatus" Association="Self.FK_Account_AccountStatus">
+            <End Role="AccountStatus" EntitySet="AccountStatus" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseForRent_Account" Association="Self.FK_HouseForRent_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="HouseForRent" EntitySet="HouseForRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseForRent_City" Association="Self.FK_HouseForRent_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="HouseForRent" EntitySet="HouseForRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseForRent_Status" Association="Self.FK_HouseForRent_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="HouseForRent" EntitySet="HouseForRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseForRent_Township" Association="Self.FK_HouseForRent_Township">
+            <End Role="Township" EntitySet="Township" />
+            <End Role="HouseForRent" EntitySet="HouseForRent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_HouseForRent" Association="Self.FK_Image_HouseForRent">
+            <End Role="HouseForRent" EntitySet="HouseForRent" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_Account" Association="Self.FK_Info_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_City" Association="Self.FK_Info_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_Township" Association="Self.FK_Info_Township">
+            <End Role="Township" EntitySet="Township" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messenger_Account" Association="Self.FK_Messenger_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Messenger" EntitySet="Messenger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_HouseForRent" Association="Self.FK_Post_HouseForRent">
+            <End Role="HouseForRent" EntitySet="HouseForRent" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Renter_HouseForRent" Association="Self.FK_Renter_HouseForRent">
+            <End Role="HouseForRent" EntitySet="HouseForRent" />
+            <End Role="Renter" EntitySet="Renter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Township_City" Association="Self.FK_Township_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Township" EntitySet="Township" />
+          </AssociationSet>
+          <AssociationSet Name="FK_University_City" Association="Self.FK_University_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="University" EntitySet="University" />
+          </AssociationSet>
+          <AssociationSet Name="FK_University_Township" Association="Self.FK_University_Township">
+            <End Role="Township" EntitySet="Township" />
+            <End Role="University" EntitySet="University" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GROUP14Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="Boolean" />
+          <Property Name="AccountStatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccountStatu" Relationship="Self.FK_Account_AccountStatus" FromRole="Account" ToRole="AccountStatus" />
+          <NavigationProperty Name="HouseForRents" Relationship="Self.FK_HouseForRent_Account" FromRole="Account" ToRole="HouseForRent" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_Info_Account" FromRole="Account" ToRole="Info" />
+          <NavigationProperty Name="Messengers" Relationship="GROUP14Model.FK_Messenger_Account" FromRole="Account" ToRole="Messenger" />
+        </EntityType>
+        <EntityType Name="AccountStatu">
+          <Key>
+            <PropertyRef Name="AccountStatusID" />
+          </Key>
+          <Property Name="AccountStatusID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_AccountStatus" FromRole="AccountStatus" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HouseForRents" Relationship="Self.FK_HouseForRent_City" FromRole="City" ToRole="HouseForRent" />
+          <NavigationProperty Name="Townships" Relationship="Self.FK_Township_City" FromRole="City" ToRole="Township" />
+          <NavigationProperty Name="Universities" Relationship="Self.FK_University_City" FromRole="City" ToRole="University" />
+          <NavigationProperty Name="Infoes" Relationship="GROUP14Model.FK_Info_City" FromRole="City" ToRole="Info" />
+        </EntityType>
+        <EntityType Name="HouseForRent">
+          <Key>
+            <PropertyRef Name="HouseID" />
+          </Key>
+          <Property Name="HouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Acreage" Type="Int32" />
+          <Property Name="Price" Type="Int64" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="TownshipID" Type="Int32" />
+          <Property Name="InnerBathRoom" Type="Boolean" />
+          <Property Name="Parking" Type="Boolean" />
+          <Property Name="MaxPeople" Type="Int32" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsHouse" Type="Boolean" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_HouseForRent_Account" FromRole="HouseForRent" ToRole="Account" />
+          <NavigationProperty Name="City" Relationship="Self.FK_HouseForRent_City" FromRole="HouseForRent" ToRole="City" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_HouseForRent_Status" FromRole="HouseForRent" ToRole="Status" />
+          <NavigationProperty Name="Township" Relationship="Self.FK_HouseForRent_Township" FromRole="HouseForRent" ToRole="Township" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_Image_HouseForRent" FromRole="HouseForRent" ToRole="Image" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Post_HouseForRent" FromRole="HouseForRent" ToRole="Post" />
+          <NavigationProperty Name="Renters" Relationship="Self.FK_Renter_HouseForRent" FromRole="HouseForRent" ToRole="Renter" />
+          <Property Name="Kitchenshelf" Type="Boolean" />
+          <Property Name="Mezzanine" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="HouseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HouseForRent" Relationship="Self.FK_Image_HouseForRent" FromRole="Image" ToRole="HouseForRent" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostView" Type="Int32" />
+          <Property Name="PostDay" Type="DateTime" Precision="3" />
+          <Property Name="HouseID" Type="Int32" />
+          <NavigationProperty Name="HouseForRent" Relationship="Self.FK_Post_HouseForRent" FromRole="Post" ToRole="HouseForRent" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Renter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RenterID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HouseID" Type="Int32" />
+          <Property Name="RentDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="HouseForRent" Relationship="Self.FK_Renter_HouseForRent" FromRole="Renter" ToRole="HouseForRent" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HouseForRents" Relationship="Self.FK_HouseForRent_Status" FromRole="Status" ToRole="HouseForRent" />
+        </EntityType>
+        <EntityType Name="Township">
+          <Key>
+            <PropertyRef Name="TownshipID" />
+          </Key>
+          <Property Name="TownshipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TownshipName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Township_City" FromRole="Township" ToRole="City" />
+          <NavigationProperty Name="HouseForRents" Relationship="Self.FK_HouseForRent_Township" FromRole="Township" ToRole="HouseForRent" />
+          <NavigationProperty Name="Universities" Relationship="Self.FK_University_Township" FromRole="Township" ToRole="University" />
+          <Property Name="LocationX" Type="Double" />
+          <Property Name="LocationY" Type="Double" />
+          <NavigationProperty Name="Infoes" Relationship="GROUP14Model.FK_Info_Township" FromRole="Township" ToRole="Info" />
+        </EntityType>
+        <EntityType Name="University">
+          <Key>
+            <PropertyRef Name="UniversityID" />
+          </Key>
+          <Property Name="UniversityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnisersityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="TownshipID" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="Self.FK_University_City" FromRole="University" ToRole="City" />
+          <NavigationProperty Name="Township" Relationship="Self.FK_University_Township" FromRole="University" ToRole="Township" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="AccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Info_Account" FromRole="Info" ToRole="Account" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="TownshipID" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="GROUP14Model.FK_Info_City" FromRole="Info" ToRole="City" />
+          <NavigationProperty Name="Township" Relationship="GROUP14Model.FK_Info_Township" FromRole="Info" ToRole="Township" />
+        </EntityType>
+        <Association Name="FK_Account_AccountStatus">
+          <End Role="AccountStatus" Type="Self.AccountStatu" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountStatus">
+              <PropertyRef Name="AccountStatusID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AccountStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseForRent_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="HouseForRent">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseForRent_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="HouseForRent">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Township_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Township" Type="Self.Township" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Township">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_University_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="University" Type="Self.University" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="University">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseForRent_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="HouseForRent">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseForRent_Township">
+          <End Role="Township" Type="Self.Township" Multiplicity="0..1" />
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Township">
+              <PropertyRef Name="TownshipID" />
+            </Principal>
+            <Dependent Role="HouseForRent">
+              <PropertyRef Name="TownshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_HouseForRent">
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseForRent">
+              <PropertyRef Name="HouseID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="HouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_HouseForRent">
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseForRent">
+              <PropertyRef Name="HouseID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="HouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Renter_HouseForRent">
+          <End Role="HouseForRent" Type="Self.HouseForRent" Multiplicity="0..1" />
+          <End Role="Renter" Type="Self.Renter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseForRent">
+              <PropertyRef Name="HouseID" />
+            </Principal>
+            <Dependent Role="Renter">
+              <PropertyRef Name="HouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_University_Township">
+          <End Role="Township" Type="Self.Township" Multiplicity="0..1" />
+          <End Role="University" Type="Self.University" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Township">
+              <PropertyRef Name="TownshipID" />
+            </Principal>
+            <Dependent Role="University">
+              <PropertyRef Name="TownshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GROUP14Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="AccountStatus" EntityType="Self.AccountStatu" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="HouseForRents" EntityType="Self.HouseForRent" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="Renters" EntityType="Self.Renter" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Townships" EntityType="Self.Township" />
+          <EntitySet Name="Universities" EntityType="Self.University" />
+          <EntitySet Name="Infoes" EntityType="Self.Info" />
+          <AssociationSet Name="FK_Account_AccountStatus" Association="Self.FK_Account_AccountStatus">
+            <End Role="AccountStatus" EntitySet="AccountStatus" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseForRent_Account" Association="Self.FK_HouseForRent_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="HouseForRent" EntitySet="HouseForRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_Account" Association="Self.FK_Info_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Info" EntitySet="Infoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseForRent_City" Association="Self.FK_HouseForRent_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="HouseForRent" EntitySet="HouseForRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Township_City" Association="Self.FK_Township_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Township" EntitySet="Townships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_University_City" Association="Self.FK_University_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="University" EntitySet="Universities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseForRent_Status" Association="Self.FK_HouseForRent_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="HouseForRent" EntitySet="HouseForRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseForRent_Township" Association="Self.FK_HouseForRent_Township">
+            <End Role="Township" EntitySet="Townships" />
+            <End Role="HouseForRent" EntitySet="HouseForRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_HouseForRent" Association="Self.FK_Image_HouseForRent">
+            <End Role="HouseForRent" EntitySet="HouseForRents" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_HouseForRent" Association="Self.FK_Post_HouseForRent">
+            <End Role="HouseForRent" EntitySet="HouseForRents" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Renter_HouseForRent" Association="Self.FK_Renter_HouseForRent">
+            <End Role="HouseForRent" EntitySet="HouseForRents" />
+            <End Role="Renter" EntitySet="Renters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_University_Township" Association="Self.FK_University_Township">
+            <End Role="Township" EntitySet="Townships" />
+            <End Role="University" EntitySet="Universities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_City" Association="GROUP14Model.FK_Info_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Info" EntitySet="Infoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_Township" Association="GROUP14Model.FK_Info_Township">
+            <End Role="Township" EntitySet="Townships" />
+            <End Role="Info" EntitySet="Infoes" />
+          </AssociationSet>
+          <EntitySet Name="Messengers" EntityType="GROUP14Model.Messenger" />
+          <AssociationSet Name="FK_Messenger_Account" Association="GROUP14Model.FK_Messenger_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Messenger" EntitySet="Messengers" />
+          </AssociationSet>
+          <EntitySet Name="SearchResults" EntityType="GROUP14Model.SearchResult" />
+        </EntityContainer>
+        <Association Name="FK_Info_City">
+          <End Type="GROUP14Model.City" Role="City" Multiplicity="0..1" />
+          <End Type="GROUP14Model.Info" Role="Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_Township">
+          <End Type="GROUP14Model.Township" Role="Township" Multiplicity="0..1" />
+          <End Type="GROUP14Model.Info" Role="Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Township">
+              <PropertyRef Name="TownshipID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="TownshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Messenger">
+          <Key>
+            <PropertyRef Name="Receiver" />
+            <PropertyRef Name="SentTime" />
+          </Key>
+          <Property Name="Receiver" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SentTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Message" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" />
+          <NavigationProperty Name="Account" Relationship="GROUP14Model.FK_Messenger_Account" FromRole="Messenger" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_Messenger_Account">
+          <End Type="GROUP14Model.Account" Role="Account" Multiplicity="1" />
+          <End Type="GROUP14Model.Messenger" Role="Messenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Messenger">
+              <PropertyRef Name="Receiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SearchResult">
+          <Key>
+            <PropertyRef Name="PostID" />
+            <PropertyRef Name="HouseID" />
+            <PropertyRef Name="StatusID" />
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="PostTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostView" Type="Int32" />
+          <Property Name="PostDay" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Acreage" Type="Int32" />
+          <Property Name="Price" Type="Int64" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="TownshipID" Type="Int32" />
+          <Property Name="InnerBathRoom" Type="Boolean" />
+          <Property Name="Parking" Type="Boolean" />
+          <Property Name="MaxPeople" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsHouse" Type="Boolean" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kitchenshelf" Type="Boolean" />
+          <Property Name="Mezzanine" Type="Boolean" />
+          <Property Name="HouseID" Type="Int32" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GROUP14ModelStoreContainer" CdmEntityContainer="GROUP14Entities2">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="GROUP14Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="AccountStatusID" ColumnName="AccountStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountStatus">
+            <EntityTypeMapping TypeName="GROUP14Model.AccountStatu">
+              <MappingFragment StoreEntitySet="AccountStatus">
+                <ScalarProperty Name="AccountStatusID" ColumnName="AccountStatusID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="GROUP14Model.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HouseForRents">
+            <EntityTypeMapping TypeName="GROUP14Model.HouseForRent">
+              <MappingFragment StoreEntitySet="HouseForRent">
+                <ScalarProperty Name="Mezzanine" ColumnName="Mezzanine" />
+                <ScalarProperty Name="Kitchenshelf" ColumnName="Kitchenshelf" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="Acreage" ColumnName="Acreage" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="TownshipID" ColumnName="TownshipID" />
+                <ScalarProperty Name="InnerBathRoom" ColumnName="InnerBathRoom" />
+                <ScalarProperty Name="Parking" ColumnName="Parking" />
+                <ScalarProperty Name="MaxPeople" ColumnName="MaxPeople" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IsHouse" ColumnName="IsHouse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="GROUP14Model.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="GROUP14Model.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostView" ColumnName="PostView" />
+                <ScalarProperty Name="PostDay" ColumnName="PostDay" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Renters">
+            <EntityTypeMapping TypeName="GROUP14Model.Renter">
+              <MappingFragment StoreEntitySet="Renter">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RenterID" ColumnName="RenterID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="RentDate" ColumnName="RentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="GROUP14Model.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Townships">
+            <EntityTypeMapping TypeName="GROUP14Model.Township">
+              <MappingFragment StoreEntitySet="Township">
+                <ScalarProperty Name="LocationY" ColumnName="LocationY" />
+                <ScalarProperty Name="LocationX" ColumnName="LocationX" />
+                <ScalarProperty Name="TownshipID" ColumnName="TownshipID" />
+                <ScalarProperty Name="TownshipName" ColumnName="TownshipName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universities">
+            <EntityTypeMapping TypeName="GROUP14Model.University">
+              <MappingFragment StoreEntitySet="University">
+                <ScalarProperty Name="UniversityID" ColumnName="UniversityID" />
+                <ScalarProperty Name="UnisersityName" ColumnName="UnisersityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="TownshipID" ColumnName="TownshipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infoes">
+            <EntityTypeMapping TypeName="GROUP14Model.Info">
+              <MappingFragment StoreEntitySet="Info">
+                <ScalarProperty Name="TownshipID" ColumnName="TownshipID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messengers">
+            <EntityTypeMapping TypeName="GROUP14Model.Messenger">
+              <MappingFragment StoreEntitySet="Messenger">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="SentTime" ColumnName="SentTime" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchResults">
+            <EntityTypeMapping TypeName="GROUP14Model.SearchResult">
+              <MappingFragment StoreEntitySet="SearchResult">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="Mezzanine" ColumnName="Mezzanine" />
+                <ScalarProperty Name="Kitchenshelf" ColumnName="Kitchenshelf" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsHouse" ColumnName="IsHouse" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="MaxPeople" ColumnName="MaxPeople" />
+                <ScalarProperty Name="Parking" ColumnName="Parking" />
+                <ScalarProperty Name="InnerBathRoom" ColumnName="InnerBathRoom" />
+                <ScalarProperty Name="TownshipID" ColumnName="TownshipID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Acreage" ColumnName="Acreage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PostDay" ColumnName="PostDay" />
+                <ScalarProperty Name="PostView" ColumnName="PostView" />
+                <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

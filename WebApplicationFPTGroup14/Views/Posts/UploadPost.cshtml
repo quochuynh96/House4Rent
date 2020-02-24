@@ -1,0 +1,213 @@
+﻿@using WebApplicationFPTGroup14.Models;
+
+@model List<City>
+@{
+    ViewBag.Title = "Đăng bài viết";
+    ViewBag.PageIndex = 1;
+    Layout = "~/Views/Shared/_AdminRoomLayout.cshtml";
+}
+@Styles.Render("~/Content/Custom/share.css")
+@Styles.Render("~/Content/Custom/upload-post.css")
+
+<div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+    <div class="container">
+        <center>
+            <h3>Đăng Bài Viết Mới</h3>
+        </center>
+        <br>
+        <form action="/Posts/UploadPost" method="post" enctype="multipart/form-data" onsubmit="return validateDataUploadPost()">
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="postTitle">Tiêu đề (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                    <input type="text" name="postTitle" id="postTitle" class="form-control" />
+                    <span class="error-message" id="postTitleErrorMessage">
+                        <i class="material-icons">error</i> Phải nhập tiêu đề.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="city">Tỉnh/Thành (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <select name="city" id="city" class="form-control cursor">
+                        <option class="cursor" value="0">Chọn Tỉnh/Thành</option>
+                        @foreach(var city in Model)
+                        {
+                            <option class="cursor" value="@city.CityID">@city.CityName</option>
+                        }
+                    </select>
+                    <span class="error-message" id="cityErrorMessage">
+                        <i class="material-icons">error</i> Phải chọn tỉnh/thành.
+                    </span>
+                </div>
+
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1 mt-sm-3 mt-md-0">
+                    <label for="district">Quận/Huyện (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <select name="district" id="district" class="form-control cursor">
+                        <option value="0">Chọn Quận/Huyện</option>
+                        <option>Phú Vang</option>
+                    </select>
+                    <span class="error-message" id="districtErrorMessage">
+                        <i class="material-icons">error</i> Phải chọn quận/huyện.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="type">Loại phòng :</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <select name="type" id="type" class="form-control cursor">
+                        <option value="0">Phòng trọ</option>
+                        <option value="1">Nhà nguyên căn</option>
+                    </select>
+                    <span class="error-message" id="districtErrorMessage">
+                        <i class="material-icons">error</i> Loại phòng không đúng.
+                    </span>
+                </div>
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1 mt-sm-3 mt-md-0">
+                    <label for="acreage">Diện tích (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-4 position-relative">
+                    <input type="number" id="acreage" name="acreage" class="form-control" />
+                    <span class="error-message" id="acreageErrorMessage">
+                        <i class="material-icons">error</i> Phải nhập diện tích.
+                    </span>
+                    <span style="position: absolute; top: 7px; right: 25px">(m<sup>2</sup>)</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="price">Giá thuê (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-4 position-relative">
+                    <input type="text" id="price" name="price" class="form-control" />
+                    <label for="price" style="background-color: #fff"></label>
+                    <span class="error-message" id="priceErrorMessage">
+                        <i class="material-icons">error</i> Phải nhập giá thuê.
+                    </span>
+                    <span style="position: absolute; top: 7px; right: 25px">(VND)</span>
+                </div>
+
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="maxPeople">Ở tối đa (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-4 position-relative">
+                    <input type="number" id="maxPeople" name="maxPeople" class="form-control" />
+                    <span class="error-message" id="maxPeopleErrorMessage">
+                        <i class="material-icons">error</i> Phải nhập số người ở tối đa.
+                    </span>
+                    <span style="position: absolute; top: 7px; right: 25px">(người)</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="addressRoom">Địa chỉ trọ (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                    <input type="text" id="addressRoom" name="addressRoom" class="form-control" />
+                    <span class="error-message" id="addressRoomErrorMessage">
+                        <i class="material-icons">error</i> Phải nhập địa chỉ.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label>Tiện nghi :</label>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label class="my-checkbox-container">
+                        Phòng vệ sinh trong
+                        <input type="checkbox" value="1" name="innerBathRoom" id="innerBathRoom">
+                        <span class="checkmark" style="width: 20px; height: 20px"></span>
+                    </label>
+                </div>
+                <div class="col-sm-12 col-md-2">
+                    <label class="my-checkbox-container">
+                        Có bãi đỗ xe
+                        <input type="checkbox" value="1" name="parking" id="parking">
+                        <span class="checkmark" style="width: 20px; height: 20px"></span>
+                    </label>
+                </div>
+                <div class="col-sm-12 col-md-2">
+                    <label class="my-checkbox-container">
+                        Có kệ bếp
+                        <input type="checkbox" value="1" name="kitchenshelf" id="kitchenshelf">
+                        <span class="checkmark" style="width: 20px; height: 20px"></span>
+                    </label>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label class="my-checkbox-container">
+                        Có gác lửng
+                        <input type="checkbox" value="1" name="mezzanine" id="mezzanine">
+                        <span class="checkmark" style="width: 20px; height: 20px"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="description">Mô tả (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                    <textarea id="description" name="description" class="form-control" rows="5"></textarea>
+                    <span class="error-message" id="descriptionErrorMessage">
+                        <i class="material-icons">error</i> Phải nhập mô tả về trọ.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="addressDetail">Địa chỉ liên lạc (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                    <input type="text" id="addressDetail" name="addressDetail" class="form-control" />
+                    <span class="error-message" id="addressDetailErrorMessage">
+                        <i class="material-icons">error</i> Phải nhập địa chỉ liên lạc của chủ trọ.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12 col-md-2 text-sm-left text-md-right pt-1">
+                    <label for="imageList">Hình ảnh (<span class="text-danger">*</span>) :</label>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                    <label class="form-control cursor">
+                        Chọn ảnh ... <input type="file" id="imageList" name="imageList[]" class="form-control" style="display:none" multiple accept="image/*" formenctype="multipart/form-data" />
+                    </label>
+                    <span class="error-message" id="imageListErrorMessage">
+                        <i class="material-icons">error</i> Phải tải lên ít nhất một ảnh.
+                    </span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-0 col-md-2"></div>
+                <div class="col-sm-12 col-md-10">
+                    <div id="image_holder" class="d-flex justify-content-start align-items-center flex-wrap">
+                        @* Image will show here *@
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-0 col-md-2"></div>
+                <div class="col-sm-12 col-md-10">
+                    <center><input type="submit" class="btn btn-sm btn-primary w-100" value="Đăng" /></center>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

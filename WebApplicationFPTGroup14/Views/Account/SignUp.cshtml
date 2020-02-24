@@ -1,0 +1,147 @@
+﻿@model IEnumerable<WebApplicationFPTGroup14.Models.City>
+@{
+    ViewBag.Title = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/Custom/sign-up.css")
+<body>
+    <div class="body-content">
+        <!-- ##### Sign up form ##### -->
+        <div class="container my-sign-up-form">
+            <form action="SignUp" method="POST" onsubmit="return validateData()">
+                <center>
+                    <h2 class="my-text-primary mb-4">
+                        Đăng ký tài khoản
+                    </h2>
+                </center>
+
+                <div class="row form-bounded">
+                    <input type="text" name="accountId" id="accountId" class="form-control">
+                    <label for="accountId">Tên tài khoản <span class="text-danger">*</span></label>
+                    <span class="error-message" id="accountIdErrorMessage">
+                        <i class="material-icons">error</i> Phải nhập tên tài khoản.
+                    </span>
+                </div>
+
+                <div class="row">
+                    <div class="form-bounded col-sm-12 col-md-6 pl-0">
+                        <input type="password" name="password" id="password" class="form-control">
+                        <label for="password">Mật khẩu <span class="text-danger">*</span></label>
+                        <i class="material-icons show-password-icon">visibility</i>
+                        <span class="error-message" id="passwordErrorMessage">
+                            <i class="material-icons">error</i>Phải nhập mật khẩu.
+                        </span>
+                    </div>
+                    <div class="form-bounded col-sm-12 col-md-6 px-0">
+                        <input type="password" name="rePassword" id="rePassword" class="form-control">
+                        <label for="rePassword">Xác nhận mật khẩu <span class="text-danger">*</span></label>
+                        <span class="error-message" id="rePasswordErrorMessage">
+                            <i class="material-icons">error</i>Xác nhận mật khẩu không đúng.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-bounded col-sm-12 col-md-6 pl-0">
+                        <input type="text" name="userName" id="userName" class="form-control">
+                        <label for="userName">Họ tên <span class="text-danger">*</span></label>
+                        <span class="error-message" id="userNameErrorMessage">
+                            <i class="material-icons">error</i>Phải nhập họ tên.
+                        </span>
+                    </div>
+
+                    <div class="form-bounded col-sm-12 col-md-6 px-0">
+                        <input type="text" name="birthDate" id="birthDate" class="datepicker form-control"
+                               onfocus="(this.type='date')" onfocusout="(this.type='text')">
+                        <label for="birthDate">Ngày sinh <span class="text-danger">*</span></label>
+                        <span class="error-message" id="birthDateErrorMessage">
+                            <i class="material-icons">error</i>Phải nhập ngày sinh.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-bounded col-sm-12 col-md-6 pl-0">
+                        <input type="number" name="phone" id="phone" class="form-control">
+                        <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
+                        <span class="error-message" id="phoneErrorMessage">
+                            <i class="material-icons">error</i>Phải nhập số điện thoại.
+                        </span>
+                    </div>
+
+                    <div class="form-bounded col-sm-12 col-md-6 px-0">
+                        <input type="email" name="email" id="email" class="form-control">
+                        <label for="email">Email <span class="text-danger">*</span></label>
+                        <span class="error-message" id="emailErrorMessage">
+                            <i class="material-icons">error</i>Phải nhập email.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-bounded col-sm-12 col-md-6 pl-0">
+                        <select class="form-control cursor" id="sex" name="sex">
+                            <option value="-1">N/A</option>
+                            <option value="1">Nam</option>
+                            <option value="0">Nữ</option>
+                        </select>
+                        <label for="sex">Giới tính <span class="text-danger">*</span></label>
+                        <span class="error-message" id="sexErrorMessage">
+                            <i class="material-icons">error</i>Phải chọn giới tính.
+                        </span>
+                    </div>
+                    <div class="form-bounded col-sm-12 col-md-6 px-0">
+                        <select class="form-control cursor" id="role" name="role">
+                            <option value="-1">N/A</option>
+                            <option value="0">Người tìm trọ</option>
+                            <option value="1">Chủ trọ</option>
+                        </select>
+                        <label for="role">Vai trò <span class="text-danger">*</span></label>
+                        <span class="error-message" id="roleErrorMessage">
+                            <i class="material-icons">error</i>Phải chọn vai trò.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-bounded col-sm-12 col-md-6 pl-0">
+                        <select class="form-control cursor" id="city" name="city">
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.CityID">@item.CityName.ToString()</option>
+                            }
+                        </select>
+                        <label for="city" style="top: -10px; color: rgb(102, 102, 102); font-size: 12px; font-style: italic;">
+                            Chọn Tỉnh/Thành phố <span class="text-danger">*</span></label>
+                        <span class="error-message" id="sexErrorMessage">
+                            <i class="material-icons">error</i>Phải chọn Tỉnh/Thành phố.
+                        </span>
+                    </div>
+                    <div class="form-bounded col-sm-12 col-md-6 px-0">
+                        <select class="form-control cursor" id="district" name="district">
+                            
+                        </select>
+                        <label for="district" style="top: -10px; color: rgb(102, 102, 102); font-size: 12px; font-style: italic;">
+                            Chọn Quận/Huyện<span class="text-danger">*</span></label>
+                        <span class="error-message" id="districtErrorMessage">
+                            <i class="material-icons">error</i>Phải chọn Quận/Huyện.
+                        </span>
+                    </div>
+                </div>
+
+                @*<div class="row">
+                    <small class="text-danger">* <i>bắt buộc nhập</i></small>
+                </div>*@
+
+                <div class="row d-flex justify-content-between mt-3">
+                    <div class="w-50 text-left">
+                        <a href="#" class="btn btn-sm my-btn-default" style="width: 105px;" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
+                    </div>
+                    <div class="w-50 text-right">
+                        <input type="submit" value="Đăng ký" class="btn btn-sm my-btn-primary" style="width: 125px">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

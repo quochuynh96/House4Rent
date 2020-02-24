@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e7e49f3691374338bf769150243a842d" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="GROUP14Model.Account" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.AccountStatu" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.City" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.HouseForRent" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.Image" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.Post" Width="1.5" PointX="7.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.Renter" Width="1.5" PointX="7.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.Status" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.Township" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.University" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GROUP14Model.Info" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="GROUP14Model.FK_Account_AccountStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_HouseForRent_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_Info_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_HouseForRent_City" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_Township_City" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_University_City" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_HouseForRent_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_HouseForRent_Township" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_Image_HouseForRent" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_Post_HouseForRent" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_Renter_HouseForRent" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_University_Township" ManuallyRouted="false" />
+        <AssociationConnector Association="GROUP14Model.FK_Info_City" />
+        <AssociationConnector Association="GROUP14Model.FK_Info_Township" />
+        <EntityTypeShape EntityType="GROUP14Model.Messenger" Width="1.5" PointX="5.25" PointY="15.625" />
+        <AssociationConnector Association="GROUP14Model.FK_Messenger_Account" />
+        <EntityTypeShape EntityType="GROUP14Model.SearchResult" Width="1.5" PointX="10.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

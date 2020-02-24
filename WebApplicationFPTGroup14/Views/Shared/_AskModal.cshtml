@@ -1,0 +1,45 @@
+﻿@using WebApplicationFPTGroup14.ViewModels;
+@model IndexViewModel
+<div class="card ask-modal">
+    <div class="card-header">
+        <strong class="mr-auto my-text-primary">Hãy cho chúng tôi biết bạn là ai ?</strong>
+        <button type="button" class="ml-2 mb-1 ml-5 close" style="line-height: 20px;">&times;</button>
+    </div>
+    <div class="card-body" id="accordianStudent" role="tablist" aria-multiselectable="true">
+        <!-- Doi tuong su dung -->
+        <div class="row">
+            <div class="form-group col-sm-12 col-md-6">
+                <label class="my-checkbox-container">
+                    Sinh viên
+                    <input type="radio" name="userType" value="0" id="studentType" class="user-type">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-group col-ms-12 col-md-6">
+                <label class="my-checkbox-container">
+                    Người đi làm
+                    <input type="radio" name="userType" value="1" id="workerType" class="user-type">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Chon truong dai hoc -->
+        <div id="sectionContentStudent" class="collapse in" role="tabpanel" aria-labelledby="sectionContentStudent"
+             style="">
+
+            <div style="border-top: solid 1px #ccc; padding-top: 12px">
+                <!-- Chon truong-->
+                <div class="row">
+                    <div class="form-group col-12">
+                        <form>
+                            <input name="school" id="school" class="form-control form-control-sm border-radius-45" placeholder="Nhập tên trường đại học">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
